@@ -1,0 +1,85 @@
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/dialog_shape"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="vertical"
+        android:background="@drawable/dialog_toolbar_shape"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tournamentNo"
+            android:textSize="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp"
+        android:background="@drawable/button_selector"
+        >
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="250dp"
+            android:layout_height="150dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/winner"
+            android:layout_margin="5dp"
+            app:lottie_rawRes="@raw/notavailable"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"/>
+
+
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID / Password will be available at"
+        android:textSize="15dp"
+        android:layout_margin="5dp"
+        android:textColor="@color/lightBlue"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10:00 AM"
+        android:textSize="40dp"
+        android:id="@+id/time"
+        android:layout_margin="5dp"
+        android:textColor="@color/purple_700"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_margin="10dp"
+        android:layout_weight="3"
+        android:id="@+id/okeyThanks"
+        android:background="@drawable/button_selector"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:textSize="13dp"
+            android:text="Okey , Thanks"
+            android:textStyle="bold"></TextView>
+
+    </LinearLayout>
+
+    </LinearLayout>

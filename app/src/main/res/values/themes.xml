@@ -1,0 +1,91 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.TournamentX" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/lightBlue</item>
+        <item name="colorOnSecondary">@color/purple_700</item>
+
+        <item name="fontFamily">@font/montserrat_medium</item>
+
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+
+    </style>
+
+   <!-- <style name= "AppTheme" parent= "AppBaseTheme" >
+        <item name= "android:textViewStyle" > @style/RobotoTextViewStyle </item>
+        <item name= "android:buttonStyle" > @style/RobotoButtonStyle </item>
+    </style>-->
+
+    <style name="CustomProgressBar" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/custom_progress_bar</item>
+        <item name="android:minHeight">10dip</item>
+        <item name="android:maxHeight">20dip</item>
+    </style>
+
+    <style name="AppCompatAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/lightBlue</item>
+        <item name="android:textColorPrimary">@color/purple_700</item>
+        <item name="textColorAlertDialogListItem">@color/lightBlue</item>
+        <item name="android:textSize">19dp</item>
+        <item name="buttonBarPositiveButtonStyle">@style/ButtonTheme</item>
+        <item name="buttonBarNegativeButtonStyle">@style/ButtonTheme</item>
+    </style>
+
+    <style name="ButtonTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="textColorAlertDialogListItem">@color/lightBlue</item>
+        <item name="android:textColor">@color/lightBlue</item>
+        <item name="backgroundTint">@color/white</item>
+    </style>
+
+    //Ads style
+
+    <style name="PauseDialogAnimation1">
+        <item name="android:windowEnterAnimation">@anim/inout</item>
+        <item name="android:windowExitAnimation">@anim/outin</item>
+    </style>
+
+    <style name="AdAttribution">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">left</item>
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:text">Ad</item>
+        <item name="android:background">#FFCC66</item>
+        <item name="android:width">15dp</item>
+        <item name="android:height">15dp</item>
+    </style>
+
+    <style name="AppAlertDialog" parent="@style/Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    //Dialog style
+    <style name="DialogStyleLight">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowTitleStyle">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+</resources>

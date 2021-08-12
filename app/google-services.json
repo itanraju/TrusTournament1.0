@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "878801397561",
+    "project_id": "trustournamentdemo-f69a1",
+    "storage_bucket": "trustournamentdemo-f69a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:878801397561:android:e04d9d57d61c9cf8a0aae8",
+        "android_client_info": {
+          "package_name": "com.trust.tournamentdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "878801397561-ujnkec6jrm55hbafqnfuiob3pkee32dg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1EBS-q9PMvuUSVjGkWjo5PrJB_IepxTI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "878801397561-ujnkec6jrm55hbafqnfuiob3pkee32dg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

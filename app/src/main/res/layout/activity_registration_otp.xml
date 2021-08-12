@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/color_grey"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_grey"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/lightBlue"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="13dp"
+                android:layout_weight="6"
+                android:src="@drawable/back_selector" />
+
+            <TextView
+                android:id="@+id/tournamentNo"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/home"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="13dp"
+                android:layout_weight="6"
+                android:src="@drawable/home_selector" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/regTournamentCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="30dp"
+                    android:visibility="visible"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="5dp"
+                    app:cardMaxElevation="5dp"
+                    app:cardPreventCornerOverlap="true"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:text="कृपया अपना सही व्हाट्सएप नंबर डाले क्युकी अगर आप टूर्नामेंट जीतते हो तो हम आपको रिडीम कोड व्हाट्सएप नंबर पे भेज सके , यह ऐप पूरी तरह से भरोसे मंद है , धन्यवाद ।"
+                            android:textAlignment="center"
+                            android:textColor="@color/red"/>
+
+                        <EditText
+                            android:id="@+id/whatsappNumber"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/edittext_layout"
+                            android:hint="Enter Your Whatsapp Number"
+                            android:inputType="number"
+                            android:letterSpacing="0.1"
+                            android:maxLength="10"
+                            android:padding="7dp"
+                            android:textAlignment="center"
+                            android:textColor="@color/purple_700"
+                            android:textSize="15sp" />
+
+                        <EditText
+                            android:id="@+id/userName"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/edittext_layout"
+                            android:hint="Free Fire Username"
+                            android:maxLength="15"
+                            android:padding="7dp"
+                            android:textAlignment="center"
+                            android:textColor="@color/purple_700"
+                            android:textSize="15sp" />
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="2dp"
+                            android:layout_marginBottom="2dp"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="10dp"
+                            app:cardMaxElevation="12dp"
+                            app:cardPreventCornerOverlap="true"
+                          >
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:adjustViewBounds="true"
+                                android:src="@drawable/uid"></ImageView>
+                        </androidx.cardview.widget.CardView>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="visible">
+
+                            <EditText
+                                android:id="@+id/uid"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/edittext_layout"
+                                android:hint="Enter Your Free Fire UID "
+                                android:inputType="number"
+                                android:letterSpacing="0.1"
+                                android:maxLength="20"
+                                android:padding="7dp"
+                                android:textAlignment="center"
+                                android:textColor="@color/purple_700"
+                                android:textSize="15sp" />
+
+
+                            <LinearLayout
+                                android:id="@+id/registerTournament"
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginTop="5dp"
+                                android:layout_marginRight="15dp"
+                                android:layout_marginBottom="5dp"
+                                android:layout_weight="3"
+                                android:background="@drawable/button_selector"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="5dp"
+                                    android:layout_weight="3"
+                                    android:gravity="center"
+                                    android:text="Register"
+                                    android:textStyle="bold"></TextView>
+                            </LinearLayout>
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_margin="10dp"
+                                android:text="कृपया अपना सही फ्री फायर का नाम डाले और यूजर आईडी में फ्री फायर का UID डाले जिससे कोई फेक रजिस्ट्रेशन ना हो पाए , अगर आपने थोड़ा सा भी यूजरनेम और UID गलत डाला तो आपको रिडीम कोड और डायमंड नही मिलेगा ,धन्यवाद ।"
+                                android:textAlignment="center"
+                                android:textColor="@color/red"></TextView>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </ScrollView>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
