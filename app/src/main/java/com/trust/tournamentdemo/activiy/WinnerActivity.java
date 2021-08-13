@@ -218,7 +218,7 @@ public class WinnerActivity extends AppCompatActivity {
                         .addShapes(Shape.Square.INSTANCE, Shape.Circle.INSTANCE)
                         .addSizes(new Size(10, 4f))
                         .setPosition(-50f, konfettiView.getWidth() + 50f, -50f, -50f)
-                        .streamFor(350, 10000L);
+                        .streamFor(350, 100000L);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

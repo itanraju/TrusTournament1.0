@@ -240,13 +240,11 @@ public class ViewDialog {
             @Override
             public void onAdLoaded() {
                 super.onAdLoaded();
-
             }
 
             @Override
             public void onAdFailedToLoad(int i) {
                 super.onAdFailedToLoad(i);
-
             }
         });
 

@@ -13,6 +13,7 @@ import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,7 +56,6 @@ import java.util.Calendar;
 public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.ViewHolder> {
     Context context;
     private ArrayList<TournamentsModel> tournamentDataArrayList;
-
     //Interstitial Ads
     private int id;
     public InterstitialAd mInterstitialAd;
@@ -126,24 +126,27 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
                 .diskCacheStrategy(DiskCacheStrategy.DATA) //3
                 .into(holder.image);
 
-        int joined = 50;
+
         final Boolean[] playerJoined = {true};
-
-        int joinPercentage = (joined * 100) / Integer.parseInt(tournamentsModel.getJoinedPlayers());
-        holder.joinedPlayer.setText(joinPercentage + " % Joined");
-        holder.progressBar.setProgress(joinPercentage);
-
         final MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.awmsound);
+
+        ArrayList<String> arrayList=new ArrayList<>();
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Registrations").child(tournamentsModel.getTournamentNo());
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    arrayList.add(dataSnapshot.getKey());
                     if (MainActivity.androidId.equals(dataSnapshot.getKey().toString())) {
                         playerJoined[0] = false;
                     }
                 }
+
+                int joinPercentage = (int) ((snapshot.getChildrenCount() * 100) / Integer.parseInt(tournamentsModel.getJoinedPlayers()));
+                holder.joinedPlayer.setText(joinPercentage + " % Joined");
+                holder.progressBar.setProgress(joinPercentage);
+
                 if (playerJoined[0]) {
                     holder.playerJoinedorNot.setText("Please Join The Tournament");
                     Drawable placeholder = holder.joinedOrNotImage.getContext().getResources().getDrawable(R.drawable.notjoined);
@@ -153,6 +156,7 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
                     Drawable placeholder = holder.joinedOrNotImage.getContext().getResources().getDrawable(R.drawable.joined);
                     holder.joinedOrNotImage.setImageDrawable(placeholder);
                 }
+
                 mInterstitialAd = new InterstitialAd(context);
                 mInterstitialAd.setAdUnitId(context.getString(R.string.InterstitialAd_id));
                 mInterstitialAd.loadAd(new AdRequest.Builder().build());

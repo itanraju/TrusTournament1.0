@@ -34,8 +34,9 @@ public class WinnerAdapter extends RecyclerView.Adapter<WinnerAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.tournamentName.setText(winnerModelArrayList.get(position).getTournamentName()+" "+winnerModelArrayList.get(position).getTournamentNo());
-        holder.winnerName.setText(winnerModelArrayList.get(position).getWinnerName());
+        final int posRevers = winnerModelArrayList.size() - (position + 1);
+        holder.tournamentName.setText(winnerModelArrayList.get(posRevers).getTournamentName()+" "+winnerModelArrayList.get(posRevers).getTournamentNo());
+        holder.winnerName.setText(winnerModelArrayList.get(posRevers).getWinnerName());
     }
 
     @Override
