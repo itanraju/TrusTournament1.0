@@ -30,7 +30,7 @@ import com.trust.tournamentdemo.model.TournamentsModel;
 
 public class TournamentDetailActivity extends AppCompatActivity {
     private com.google.android.material.button.MaterialButton registrationTab;
-    TextView winner,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10;
+    TextView prize,rules;
     ImageView image;
     private String playerJoined;
     TournamentsModel tournamentsModel=new TournamentsModel();
@@ -64,7 +64,6 @@ public class TournamentDetailActivity extends AppCompatActivity {
         {
             Toast.makeText(this, "Check your internet connection !", Toast.LENGTH_LONG).show();
         }
-
 
         Gson gson = new Gson();
         String data = getIntent().getStringExtra("data");
@@ -178,18 +177,8 @@ public class TournamentDetailActivity extends AppCompatActivity {
                 .skipMemoryCache(true) //2
                 .diskCacheStrategy(DiskCacheStrategy.DATA) //3
                 .into(image);
-        winner.setText(tournamentsModel.getWinner());
-        r1.setText(tournamentsModel.getR1());
-        r2.setText(tournamentsModel.getR2());
-        r3.setText(tournamentsModel.getR3());
-        r4.setText(tournamentsModel.getR4());
-        r5.setText(tournamentsModel.getR5());
-        r6.setText(tournamentsModel.getR6());
-        r7.setText(tournamentsModel.getR7());
-        r8.setText(tournamentsModel.getR8());
-        r9.setText(tournamentsModel.getR9());
-        r10.setText(tournamentsModel.getR10());
-
+        rules.setText(tournamentsModel.getRules());
+        prize.setText(tournamentsModel.getPrize());
     }
 
     private boolean isNetworkConnected() {
@@ -200,17 +189,8 @@ public class TournamentDetailActivity extends AppCompatActivity {
     private void bindView() {
         registrationTab=findViewById(R.id.registrationTab);
         image=findViewById(R.id.image);
-        winner=findViewById(R.id.winner);
-        r1=findViewById(R.id.r1);
-        r2=findViewById(R.id.r2);
-        r3=findViewById(R.id.r3);
-        r4=findViewById(R.id.r4);
-        r5=findViewById(R.id.r5);
-        r6=findViewById(R.id.r6);
-        r7=findViewById(R.id.r7);
-        r8=findViewById(R.id.r8);
-        r9=findViewById(R.id.r9);
-        r10=findViewById(R.id.r10);
+        prize=findViewById(R.id.prize);
+        rules=findViewById(R.id.rules);
     }
 
     @Override

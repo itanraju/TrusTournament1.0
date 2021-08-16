@@ -179,6 +179,12 @@ public class RegistrationOtpActivity extends AppCompatActivity {
                                     };
                                     rewardedAd.show(activityContext, adCallback);
                                 } else {
+                                    dialog = new AppCompatDialog(RegistrationOtpActivity.this, R.style.DialogStyleLight);
+                                    dialog.setContentView(R.layout.custom_progress_dialog_layout);
+                                    dialog.setCancelable(true);
+                                    dialog.setCanceledOnTouchOutside(true);
+                                    dialog.show();
+                                    registering();
                                     Log.d("TAG", "The rewarded ad wasn't loaded yet.");
                                 }
 
@@ -258,6 +264,12 @@ public class RegistrationOtpActivity extends AppCompatActivity {
 
             @Override
             public void onRewardedAdFailedToLoad(LoadAdError adError) {
+                dialog = new AppCompatDialog(RegistrationOtpActivity.this, R.style.DialogStyleLight);
+                dialog.setContentView(R.layout.custom_progress_dialog_layout);
+                dialog.setCancelable(true);
+                dialog.setCanceledOnTouchOutside(true);
+                dialog.show();
+                registering();
                 // Ad failed to load.
             }
         };

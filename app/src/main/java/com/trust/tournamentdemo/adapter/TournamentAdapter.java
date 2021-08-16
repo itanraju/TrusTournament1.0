@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -75,7 +76,7 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
         LinearLayout join, idPass;
         TextView tournamentNo, tournamentName, map, mode, type, time, date, period, joinedPlayer, playerJoinedorNot;
         ProgressBar progressBar;
-
+        RelativeLayout tournamentLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image);
@@ -93,12 +94,14 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
             joinedPlayer = itemView.findViewById(R.id.joinedPlayer);
             playerJoinedorNot = itemView.findViewById(R.id.playerJoinedorNot);
             joinedOrNotImage = itemView.findViewById(R.id.joinedOrNotImage);
+            tournamentLayout=itemView.findViewById(R.id.tournamentLayout);
         }
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View rowItem = LayoutInflater.from(parent.getContext()).inflate(R.layout.tournament_layout, parent, false);
         return new ViewHolder(rowItem);
     }
@@ -110,6 +113,17 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
         sp = context.getSharedPreferences("click", Activity.MODE_PRIVATE);
         editor2 = sp.edit();
         click = sp.getInt("click", 0);
+
+        if(tournamentsModel.getVisibility().equals("no"))
+        {
+            holder.tournamentLayout.getLayoutParams().height = 0;
+            holder.tournamentLayout.getLayoutParams().width=0;
+        }
+        else
+        {
+            holder.tournamentLayout.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+            holder.tournamentLayout.getLayoutParams().width= ViewGroup.LayoutParams.MATCH_PARENT;
+        }
 
         holder.tournamentNo.setText(tournamentsModel.getTournamentNo());
         holder.tournamentName.setText(tournamentsModel.getTournamentName());

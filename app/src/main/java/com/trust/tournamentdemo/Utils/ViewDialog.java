@@ -32,7 +32,7 @@ public class ViewDialog {
     public InterstitialAd mInterstitialAd;
     private KProgressHUD hud;
 
-    public void showDialog(Activity activity, String no, String names, String newTime) {
+    public void showDialog(Activity activity, String no, String names, String newTime,String date) {
         final Dialog dialog = new Dialog(activity);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -42,6 +42,7 @@ public class ViewDialog {
         TextView tournamentNo = dialog.findViewById(R.id.tournamentNo);
         TextView time = dialog.findViewById(R.id.time);
         LinearLayout okeyThanks = dialog.findViewById(R.id.okeyThanks);
+        TextView dateTxt=dialog.findViewById(R.id.date);
 
         mInterstitialAd = new InterstitialAd(activity);
         mInterstitialAd.setAdUnitId(activity.getString(R.string.InterstitialAd_id));
@@ -72,6 +73,7 @@ public class ViewDialog {
 
         tournamentNo.setText("#" + no + " " + names);
         time.setText(newTime + "");
+        dateTxt.setText("On this "+date+" date");
 
         okeyThanks.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -359,101 +361,20 @@ public class ViewDialog {
         TextView tournamentNo = dialog.findViewById(R.id.tournamentNo);
         LinearLayout okeyThanks = dialog.findViewById(R.id.okeyThanks);
 
-        mInterstitialAd = new InterstitialAd(activity);
-        mInterstitialAd.setAdUnitId(activity.getString(R.string.InterstitialAd_id));
-        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-        mInterstitialAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdClosed() {
-                mInterstitialAd.loadAd(new AdRequest.Builder().build());
-                switch (id) {
-                    case 1:
-                        dialog.dismiss();
-                        activity.startActivity(new Intent(activity, MainActivity.class));
-                        activity.finish();
-                        break;
-                }
-            }
-
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-
-            }
-
-            @Override
-            public void onAdFailedToLoad(int i) {
-                super.onAdFailedToLoad(i);
-
-            }
-        });
-
         tournamentNo.setText("#" + no + " " + names);
 
         okeyThanks.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mInterstitialAd!=null&&mInterstitialAd.isLoaded()){
-                    try {
-                        hud = KProgressHUD.create(activity).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE).setLabel("Showing Ads").setDetailsLabel("Please Wait...");
-                        hud.show();
-                    } catch (IllegalArgumentException e) {
-                        e.printStackTrace();
-                    } catch (NullPointerException e2) {
-                        e2.printStackTrace();
-                    } catch (Exception e3) {
-                        e3.printStackTrace();
-                    }
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
-                                hud.dismiss();
-                            } catch (IllegalArgumentException e) {
-                                e.printStackTrace();
-
-                            } catch (NullPointerException e2) {
-                                e2.printStackTrace();
-                            } catch (Exception e3) {
-                                e3.printStackTrace();
-                            }
-                            if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
-                                id = 1;
-                                mInterstitialAd.show();
-                            }
-                        }
-                    }, 2000);
-                }
-                else {
-                    dialog.dismiss();
-                    activity.startActivity(new Intent(activity, MainActivity.class));
-                    activity.finish();
-                }
+                dialog.dismiss();
+                activity.startActivity(new Intent(activity, MainActivity.class));
+                activity.finish();
             }
         });
 
         dialog.show();
     }
 
-    public void showDialogForProgress(Activity activity, int id) {
-        final Dialog dialog = new Dialog(activity);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.setCancelable(false);
-        dialog.setContentView(R.layout.custom_progress_dialog_layout);
-        dialog.show();
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                // Close dialog after 1000ms
-                dialog.cancel();
-            }
-        }, 4000);
-    }
 
     public void showDialogForProgressTwoSecond(Activity activity) {
         final Dialog dialog = new Dialog(activity);

@@ -1,7 +1,8 @@
 package com.trust.tournamentdemo.model;
 
 public class TournamentsModel {
-    String tournamentNo,tournamentName,idPassTime,map,mode,image,type,date,time,timeCounter,joinedPlayers,winner,r1,r2,r3,r4,r5,r6,r7,r8,r9,r10,roomId,roomPassword,isAvailableIdPass;
+    String tournamentNo, tournamentName, idPassTime, map, mode, image, type, date, time, timeCounter, joinedPlayers, rules, roomId, roomPassword, isAvailableIdPass, visibility,prize;
+
     public TournamentsModel() {
     }
 
@@ -49,48 +50,8 @@ public class TournamentsModel {
         return joinedPlayers;
     }
 
-    public String getWinner() {
-        return winner;
-    }
-
-    public String getR1() {
-        return r1;
-    }
-
-    public String getR2() {
-        return r2;
-    }
-
-    public String getR3() {
-        return r3;
-    }
-
-    public String getR4() {
-        return r4;
-    }
-
-    public String getR5() {
-        return r5;
-    }
-
-    public String getR6() {
-        return r6;
-    }
-
-    public String getR7() {
-        return r7;
-    }
-
-    public String getR8() {
-        return r8;
-    }
-
-    public String getR9() {
-        return r9;
-    }
-
-    public String getR10() {
-        return r10;
+    public String getRules() {
+        return rules;
     }
 
     public String getRoomId() {
@@ -103,5 +64,13 @@ public class TournamentsModel {
 
     public String getIsAvailableIdPass() {
         return isAvailableIdPass;
+    }
+
+    public String getVisibility() {
+        return visibility;
+    }
+
+    public String getPrize() {
+        return prize;
     }
 }

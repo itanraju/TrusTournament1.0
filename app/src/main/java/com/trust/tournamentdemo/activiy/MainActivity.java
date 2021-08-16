@@ -146,8 +146,6 @@ public class MainActivity extends AppCompatActivity {
         editor = sharedPreferences.edit();
         androidId = sharedPreferences.getString("androidId", android_id);
 
-        /*loadRewardedAd();
-        loadRewardedAd2();*/
         bindView();
         interstitialAd();
 
@@ -549,7 +547,7 @@ public class MainActivity extends AppCompatActivity {
                 alert.showDialogForRoomIdPassword(activity, tournamentsModel.getTournamentNo(), tournamentsModel.getTournamentName(), tournamentsModel.getRoomId(), tournamentsModel.getRoomPassword());
             } else {
                 ViewDialog alert = new ViewDialog();
-                alert.showDialog(activity, tournamentsModel.getTournamentNo(), tournamentsModel.getTournamentName(), tournamentsModel.getIdPassTime());
+                alert.showDialog(activity, tournamentsModel.getTournamentNo(), tournamentsModel.getTournamentName(), tournamentsModel.getIdPassTime(),tournamentsModel.getDate());
             }
         }
     }
