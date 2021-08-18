@@ -119,10 +119,13 @@ public class RegistrationOtpActivity extends AppCompatActivity {
 
                 if (TextUtils.isEmpty(sWhatsappNo)) {
                     whatsappNo.setError("Please enter whatsapp number !");
+                    whatsappNo.requestFocus();
                 } else if (TextUtils.isEmpty(sUserName)) {
                     userName.setError("Please enter Username !");
+                    userName.requestFocus();
                 } else if (TextUtils.isEmpty(sUid)) {
                     uid.setError("Please Enter ff UID !");
+                    uid.requestFocus();
                 } else {
                     editor.putString("whatsappNumber", sWhatsappNo);
                     editor.putString("userName", sUserName);
@@ -130,7 +133,8 @@ public class RegistrationOtpActivity extends AppCompatActivity {
                     editor.putString("androidId", android_id);
                     editor.commit();
                     if (sWhatsappNo.length() != 10) {
-                        Toast.makeText(RegistrationOtpActivity.this, "Please enter valid whatsapp number !", Toast.LENGTH_LONG).show();
+                        whatsappNo.setError("Please enter correct number !");
+                        whatsappNo.requestFocus();
                     } else {
                         hud = KProgressHUD.create(activity).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE).setLabel("Showing Ads").setDetailsLabel("Please Wait...");
                         hud.show();
@@ -381,8 +385,6 @@ public class RegistrationOtpActivity extends AppCompatActivity {
         editor2.putInt("click", click);
         editor2.commit();
         if (click % 2 == 0) {
-            super.onBackPressed();
-        } else {
             if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
                 try {
                     hud = KProgressHUD.create(activity).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE).setLabel("Showing Ads").setDetailsLabel("Please Wait...");
@@ -418,6 +420,8 @@ public class RegistrationOtpActivity extends AppCompatActivity {
                 super.onBackPressed();
                 finish();
             }
+        } else {
+            super.onBackPressed();
         }
     }
 }

@@ -57,7 +57,7 @@ public class FreeRedeemCodeActivity extends AppCompatActivity {
     private AppCompatDialog dialog;
     private LottieAnimationView winnerCup;
     private RecyclerView recyclerView;
-    private ImageView back;
+    private ImageView back,refreshImg;
     private SwipeRefreshLayout swipeRefreshLayout;
     private ArrayList<RedeemRoomModel> redeemCodeList = new ArrayList<>();
 
@@ -107,6 +107,46 @@ public class FreeRedeemCodeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                onBackPressed();
+            }
+        });
+
+        refreshImg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
+                    try {
+                        hud = KProgressHUD.create(activity).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE).setLabel("Showing Ads").setDetailsLabel("Please Wait...");
+                        hud.show();
+                    } catch (IllegalArgumentException e) {
+                        e.printStackTrace();
+                    } catch (NullPointerException e2) {
+                        e2.printStackTrace();
+                    } catch (Exception e3) {
+                        e3.printStackTrace();
+                    }
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                hud.dismiss();
+                            } catch (IllegalArgumentException e) {
+                                e.printStackTrace();
+
+                            } catch (NullPointerException e2) {
+                                e2.printStackTrace();
+                            } catch (Exception e3) {
+                                e3.printStackTrace();
+                            }
+                            if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
+                                id = 4;
+                                mInterstitialAd.show();
+                            }
+                        }
+                    }, 2000);
+                } else {
+                    refreshing();
+                }
             }
         });
 
@@ -280,6 +320,8 @@ public class FreeRedeemCodeActivity extends AppCompatActivity {
                     case 3:
                         refreshing();
                         break;
+                    case 4:
+                        refreshing();
                 }
             }
 
@@ -328,6 +370,7 @@ public class FreeRedeemCodeActivity extends AppCompatActivity {
         back = findViewById(R.id.back);
         recyclerView = findViewById(R.id.recycleView);
         swipeRefreshLayout = findViewById(R.id.refreshLayout);
+        refreshImg=findViewById(R.id.refreshImg);
     }
 
     @Override
@@ -335,9 +378,7 @@ public class FreeRedeemCodeActivity extends AppCompatActivity {
         click = click + 1;
         editor2.putInt("click", click);
         editor2.commit();
-        if (click % 3 == 0) {
-            super.onBackPressed();
-        } else {
+        if (click % 2 == 0) {
             if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
                 try {
                     hud = KProgressHUD.create(activity).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE).setLabel("Showing Ads").setDetailsLabel("Please Wait...");
@@ -372,6 +413,8 @@ public class FreeRedeemCodeActivity extends AppCompatActivity {
             } else {
                 super.onBackPressed();
             }
+        } else {
+            super.onBackPressed();
         }
     }
 }

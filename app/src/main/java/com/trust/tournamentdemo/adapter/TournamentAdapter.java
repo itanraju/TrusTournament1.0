@@ -32,6 +32,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -64,7 +65,7 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
 
     SharedPreferences sp;
     SharedPreferences.Editor editor2;
-    int click=0;
+    int click = 0;
 
     public TournamentAdapter(Context context, ArrayList<TournamentsModel> tournamentDataArrayList) {
         this.context = context;
@@ -77,6 +78,7 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
         TextView tournamentNo, tournamentName, map, mode, type, time, date, period, joinedPlayer, playerJoinedorNot;
         ProgressBar progressBar;
         RelativeLayout tournamentLayout;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.image);
@@ -94,7 +96,7 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
             joinedPlayer = itemView.findViewById(R.id.joinedPlayer);
             playerJoinedorNot = itemView.findViewById(R.id.playerJoinedorNot);
             joinedOrNotImage = itemView.findViewById(R.id.joinedOrNotImage);
-            tournamentLayout=itemView.findViewById(R.id.tournamentLayout);
+            tournamentLayout = itemView.findViewById(R.id.tournamentLayout);
         }
     }
 
@@ -114,15 +116,12 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
         editor2 = sp.edit();
         click = sp.getInt("click", 0);
 
-        if(tournamentsModel.getVisibility().equals("no"))
-        {
+        if (tournamentsModel.getVisibility().equals("no")) {
             holder.tournamentLayout.getLayoutParams().height = 0;
-            holder.tournamentLayout.getLayoutParams().width=0;
-        }
-        else
-        {
+            holder.tournamentLayout.getLayoutParams().width = 0;
+        } else {
             holder.tournamentLayout.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
-            holder.tournamentLayout.getLayoutParams().width= ViewGroup.LayoutParams.MATCH_PARENT;
+            holder.tournamentLayout.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
         }
 
         holder.tournamentNo.setText(tournamentsModel.getTournamentNo());
@@ -133,18 +132,26 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
         holder.time.setText(tournamentsModel.getTime());
         holder.period.setText(tournamentsModel.getTimeCounter());
         holder.date.setText(tournamentsModel.getDate());
+
+        RequestOptions reqOpt = RequestOptions
+                .fitCenterTransform()
+                .transform(new RoundedCorners(5))
+                .diskCacheStrategy(DiskCacheStrategy.ALL) // It will cache your image after loaded for first time
+                .override(holder.image.getWidth(), holder.image.getHeight());
+
         Glide.with(context) //1
                 .load(tournamentsModel.getImage())
                 .placeholder(R.drawable.loading)
                 .skipMemoryCache(true) //2
-                .diskCacheStrategy(DiskCacheStrategy.DATA) //3
+                .diskCacheStrategy(DiskCacheStrategy.ALL) //3
+                .apply(reqOpt)
                 .into(holder.image);
 
 
         final Boolean[] playerJoined = {true};
         final MediaPlayer mediaPlayer = MediaPlayer.create(context, R.raw.awmsound);
 
-        ArrayList<String> arrayList=new ArrayList<>();
+        ArrayList<String> arrayList = new ArrayList<>();
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Registrations").child(tournamentsModel.getTournamentNo());
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -166,11 +173,10 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
                     Drawable placeholder = holder.joinedOrNotImage.getContext().getResources().getDrawable(R.drawable.notjoined);
                     holder.joinedOrNotImage.setImageDrawable(placeholder);
                 } else {
-                    holder.playerJoinedorNot.setText("You Already Joined This Tournament");
+                    holder.playerJoinedorNot.setText("You have Joined This Tournament");
                     Drawable placeholder = holder.joinedOrNotImage.getContext().getResources().getDrawable(R.drawable.joined);
                     holder.joinedOrNotImage.setImageDrawable(placeholder);
                 }
-
                 mInterstitialAd = new InterstitialAd(context);
                 mInterstitialAd.setAdUnitId(context.getString(R.string.InterstitialAd_id));
                 mInterstitialAd.loadAd(new AdRequest.Builder().build());
@@ -181,20 +187,23 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
                         switch (id) {
                             case 1:
                                 String joined;
-                                if(playerJoined[0])
-                                {
-                                    joined="no";
-                                }
-                                else
-                                {
-                                    joined="yes";
+                                if (playerJoined[0]) {
+                                    joined = "no";
+                                } else {
+                                    joined = "yes";
                                 }
                                 Gson gson = new Gson();
                                 String data = gson.toJson(tournamentsModel);
                                 Intent intent = new Intent(context, TournamentDetailActivity.class);
                                 intent.putExtra("data", data);
-                                intent.putExtra("playerJoined",joined);
+                                intent.putExtra("playerJoined", joined);
                                 context.startActivity(intent);
+                                break;
+
+                            case 2:
+                                final MediaPlayer mediaPlayer2 = MediaPlayer.create(context, R.raw.joto);
+                                mediaPlayer2.start();
+                                ((MainActivity) context).idPassClick(new Boolean[]{playerJoined[0]}, tournamentsModel);
                                 break;
                         }
                     }
@@ -210,6 +219,7 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
                     }
                 });
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
@@ -224,7 +234,7 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
                 editor2.commit();
                 if (click % 2 == 0) {
 
-                    if (mInterstitialAd!=null&&mInterstitialAd.isLoaded()){
+                    if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
                         try {
                             hud = KProgressHUD.create(context).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE).setLabel("Showing Ads").setDetailsLabel("Please Wait...");
                             hud.show();
@@ -255,41 +265,34 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
                                 }
                             }
                         }, 2000);
-                    }
-                    else {
+                    } else {
                         String joined;
-                        if(playerJoined[0])
-                        {
-                            joined="no";
-                        }
-                        else
-                        {
-                            joined="yes";
+                        if (playerJoined[0]) {
+                            joined = "no";
+                        } else {
+                            joined = "yes";
                         }
                         Gson gson = new Gson();
                         String data = gson.toJson(tournamentsModel);
                         Intent intent = new Intent(context, TournamentDetailActivity.class);
                         intent.putExtra("data", data);
-                        intent.putExtra("playerJoined",joined);
+                        intent.putExtra("playerJoined", joined);
                         context.startActivity(intent);
                     }
 
                 } else {
                     String joined;
-                    if(playerJoined[0])
-                    {
-                        joined="no";
-                    }
-                    else
-                    {
-                        joined="yes";
+                    if (playerJoined[0]) {
+                        joined = "no";
+                    } else {
+                        joined = "yes";
                     }
                     mediaPlayer.start();
                     Gson gson = new Gson();
                     String data = gson.toJson(tournamentsModel);
                     Intent intent = new Intent(context, TournamentDetailActivity.class);
                     intent.putExtra("data", data);
-                    intent.putExtra("playerJoined",joined);
+                    intent.putExtra("playerJoined", joined);
                     context.startActivity(intent);
                 }
             }
@@ -298,13 +301,45 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
         holder.idPass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final MediaPlayer mediaPlayer2 = MediaPlayer.create(context, R.raw.joto);
-                mediaPlayer2.start();
-                ((MainActivity)context).idPassClick(new Boolean[]{playerJoined[0]},tournamentsModel);
 
+                if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
+                    try {
+                        hud = KProgressHUD.create(context).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE).setLabel("Showing Ads").setDetailsLabel("Please Wait...");
+                        hud.show();
+                    } catch (IllegalArgumentException e) {
+                        e.printStackTrace();
+                    } catch (NullPointerException e2) {
+                        e2.printStackTrace();
+                    } catch (Exception e3) {
+                        e3.printStackTrace();
+                    }
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                hud.dismiss();
+                            } catch (IllegalArgumentException e) {
+                                e.printStackTrace();
+
+                            } catch (NullPointerException e2) {
+                                e2.printStackTrace();
+                            } catch (Exception e3) {
+                                e3.printStackTrace();
+                            }
+                            if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
+                                id = 2;
+                                mInterstitialAd.show();
+                            }
+                        }
+                    }, 2000);
+                } else {
+                    final MediaPlayer mediaPlayer2 = MediaPlayer.create(context, R.raw.joto);
+                    mediaPlayer2.start();
+                    ((MainActivity) context).idPassClick(new Boolean[]{playerJoined[0]}, tournamentsModel);
+                }
             }
         });
-
     }
 
     @Override

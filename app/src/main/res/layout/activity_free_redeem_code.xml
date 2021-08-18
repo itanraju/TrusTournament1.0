@@ -30,7 +30,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:text="Redeem Room"
+                    android:text="Redeem Code Room"
                     android:textColor="#FFFFFF"
                     android:textSize="18sp" />
 
@@ -60,8 +60,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@color/red"
+                android:layout_marginTop="8dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -74,8 +73,9 @@
                     android:marqueeRepeatLimit="marquee_forever"
                     android:nestedScrollingEnabled="true"
                     android:singleLine="true"
-                    android:text="                        जो प्लेयर सबसे पहले आके ले लेगा रिडीम कोड उसे मिल जाएगा  |  देखते रहना कोड दिए गए टाइम मैसे कभी भी आ सकता है   |   इसमे आपको हररोज मुफ्त में रिडीम कोड मिलेंगे अलग अलग टाइम पे , जो नीचे टाइम दिखाया होगा   |    10 से लेके 500 रुपे तक का कोई भी प्राइस का रिडीम कोड मिल सकता है ।"
-                    android:textColor="@color/white"
+                    android:text="                                                            जो प्लेयर सबसे पहले आके ले लेगा रिडीम कोड उसे मिल जाएगा  |  देखते रहना कोड दिए गए टाइम मैसे कभी भी आ सकता है   |   इसमे आपको हररोज मुफ्त में रिडीम कोड मिलेंगे अलग अलग टाइम पे , जो नीचे टाइम दिखाया होगा   |    10 से लेके 500 रुपे तक का कोई भी प्राइस का रिडीम कोड मिल सकता है ।"
+                    android:textColor="@color/red"
+                    android:textStyle="bold"
                     android:textSize="12dp" />
 
             </LinearLayout>
@@ -83,28 +83,47 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:orientation="horizontal"
                     android:gravity="center"
-                    android:text="Free Live Redeem Code"
-                    android:textColor="@color/lightBlue"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    >
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="right"
+                        android:text="Free Live Redeem Code"
+                        android:textColor="@color/lightBlue"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:layout_marginTop="4dp"
+                        android:id="@+id/refreshImg"
+                        android:src="@drawable/refresh_selector"
+                        android:layout_weight="10"
+                        />
+                </LinearLayout>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
+                    android:layout_marginTop="5dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="5dp"
                     app:cardCornerRadius="4dp"
                     app:cardElevation="5dp"
                     app:cardMaxElevation="5dp"

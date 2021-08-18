@@ -199,8 +199,6 @@ public class TournamentDetailActivity extends AppCompatActivity {
         editor2.putInt("click", click);
         editor2.commit();
         if (click % 2 == 0) {
-            super.onBackPressed();
-        } else {
             if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
                 try {
                     hud = KProgressHUD.create(activity).setStyle(KProgressHUD.Style.SPIN_INDETERMINATE).setLabel("Showing Ads").setDetailsLabel("Please Wait...");
@@ -235,6 +233,8 @@ public class TournamentDetailActivity extends AppCompatActivity {
             } else {
                 super.onBackPressed();
             }
+        } else {
+            super.onBackPressed();
         }
     }
 }

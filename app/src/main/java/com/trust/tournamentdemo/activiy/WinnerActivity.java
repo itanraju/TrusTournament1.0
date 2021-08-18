@@ -69,7 +69,7 @@ public class WinnerActivity extends AppCompatActivity {
         click = click + 1;
         editor2.putInt("click", click);
         editor2.commit();
-        if (click % 3 == 0) {
+        if (click % 2 == 0) {
             super.onBackPressed();
         } else {
             if (mInterstitialAd != null && mInterstitialAd.isLoaded()) {
