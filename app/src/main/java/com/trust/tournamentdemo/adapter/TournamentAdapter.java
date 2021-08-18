@@ -228,6 +228,7 @@ public class TournamentAdapter extends RecyclerView.Adapter<TournamentAdapter.Vi
         holder.join.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("TGA","Adapter : "+tournamentsModel.getTournamentNo());
                 mediaPlayer.start();
                 click = click + 1;
                 editor2.putInt("click", click);

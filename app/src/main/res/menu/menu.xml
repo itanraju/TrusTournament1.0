@@ -5,8 +5,8 @@
     tools:context=".activities.MainActivity">
 
     <item
-        android:id="@+id/instagram"
-        android:title="Instagram"
+        android:id="@+id/shareApp"
+        android:title="Share App"
          />
 
     <item

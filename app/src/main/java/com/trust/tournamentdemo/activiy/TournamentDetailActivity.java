@@ -11,6 +11,7 @@ import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -70,6 +71,8 @@ public class TournamentDetailActivity extends AppCompatActivity {
         playerJoined=getIntent().getStringExtra("playerJoined");
         tournamentsModel = gson.fromJson(data, TournamentsModel.class);
         setData();
+
+        Log.d("TGA","Reg Detail : "+tournamentsModel.getTournamentNo());
 
         registrationTab.setOnClickListener(new View.OnClickListener() {
             @Override

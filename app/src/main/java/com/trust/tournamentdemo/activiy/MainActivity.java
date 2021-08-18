@@ -83,7 +83,7 @@ import static com.trust.tournamentdemo.nativeAds.NativeAdMethod.populateUnifiedN
 
 public class MainActivity extends AppCompatActivity {
     private RelativeLayout freeRedeemRoom;
-    private LottieAnimationView winner, youtube;
+    private LottieAnimationView winner, youtube,instagram;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private ImageView optionMenu;
@@ -178,7 +178,22 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        instagram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("https://www.instagram.com/trustournament.official/");
+                Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
 
+                likeIng.setPackage("com.instagram.android");
+
+                try {
+                    startActivity(likeIng);
+                } catch (ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("https://www.instagram.com/trustournament.official/")));
+                }
+            }
+        });
         youtube.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -239,17 +254,17 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
                             }
                         }
-                        if (item.getItemId() == R.id.instagram) {
-                            Uri uri = Uri.parse("https://www.instagram.com/trustournament.official/");
-                            Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
-
-                            likeIng.setPackage("com.instagram.android");
-
+                        if (item.getItemId() == R.id.shareApp) {
                             try {
-                                startActivity(likeIng);
-                            } catch (ActivityNotFoundException e) {
-                                startActivity(new Intent(Intent.ACTION_VIEW,
-                                        Uri.parse("https://www.instagram.com/trustournament.official/")));
+                                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                                shareIntent.setType("text/plain");
+                                shareIntent.putExtra(Intent.EXTRA_SUBJECT, "TrusTournament");
+                                String shareMessage= "Download this app for playing free tournaments and get many diamonds and redeem code for free\n\n";
+                                shareMessage = shareMessage + "https://play.google.com/store/apps/details?id=com.trust.tournament";
+                                shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                                startActivity(Intent.createChooser(shareIntent, "choose one"));
+                            } catch(Exception e) {
+                                //e.toString();
                             }
                         }
 
@@ -675,6 +690,7 @@ public class MainActivity extends AppCompatActivity {
         noInternentLayout = findViewById(R.id.noInternentLayout);
         winner = findViewById(R.id.winner);
         youtube = findViewById(R.id.youtube);
+        instagram=findViewById(R.id.instagram);
     }
 
 

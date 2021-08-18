@@ -136,6 +136,16 @@ public class WinnerActivity extends AppCompatActivity {
         }
 
         bindView();
+        konfettiView.build()
+                .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
+                .setDirection(0.0, 359.0)
+                .setSpeed(1f, 4f)
+                .setFadeOutEnabled(true)
+                .setTimeToLive(50000L)
+                .addShapes(Shape.Square.INSTANCE, Shape.Circle.INSTANCE)
+                .addSizes(new Size(10, 4f))
+                .setPosition(-50f, konfettiView.getWidth() + 50f, -50f, -50f)
+                .streamFor(350, 100000L);
         fetchData();
 
         if(!isNetworkConnected())
@@ -208,17 +218,6 @@ public class WinnerActivity extends AppCompatActivity {
                 winnerRecycleView.setAdapter(winnerAdapter);
 
                 dialog.dismiss();
-
-                konfettiView.build()
-                        .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
-                        .setDirection(0.0, 359.0)
-                        .setSpeed(1f, 4f)
-                        .setFadeOutEnabled(true)
-                        .setTimeToLive(50000L)
-                        .addShapes(Shape.Square.INSTANCE, Shape.Circle.INSTANCE)
-                        .addSizes(new Size(10, 4f))
-                        .setPosition(-50f, konfettiView.getWidth() + 50f, -50f, -50f)
-                        .streamFor(350, 100000L);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
