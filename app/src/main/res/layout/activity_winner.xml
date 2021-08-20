@@ -8,7 +8,7 @@
     android:layout_centerVertical="true"
     android:background="@color/color_grey"
     android:orientation="vertical"
-    tools:context="com.trust.tournamentdemo.activiy.WinnerActivity">
+    tools:context="com.trust.tournament.activiy.WinnerActivity">
 
     <RelativeLayout
         android:id="@+id/rl_toolbar"

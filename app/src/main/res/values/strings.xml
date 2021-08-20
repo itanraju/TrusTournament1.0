@@ -1,11 +1,10 @@
 <resources>
 
-    <string name="AppId">ca-app-pub-3940256099942544~3347511713</string>
-    <string name="Banner_ad_id">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="InterstitialAd_id">ca-app-pub-3940256099942544/1033173712</string>
-    <string name="NativeAdvanceAd_id">ca-app-pub-3940256099942544/2247696110</string>
-    <string name="app_open_ads">ca-app-pub-3940256099942544/3419835294</string>
-    <style name="Reward_ads">ca-app-pub-4824494878097656/8403117409</style>
+    <string name="AppId">ca-app-pub-7806194939573064~5016613999</string>
+    <string name="Banner_ad_id">ca-app-pub-7806194939573064/</string>//3791597976
+    <string name="InterstitialAd_id">ca-app-pub-7806194939573064/</string>//7966017449
+    <string name="NativeAdvanceAd_id">ca-app-pub-7806194939573064/</string>//4087111449
+    <string name="app_open_ads">ca-app-pub-7806194939573064/</string>//2694138720
 
     <string name="app_name">TrusTournament</string>
     <string name="privacy">Privacy &amp; Policy</string>

@@ -1,33 +1,124 @@
 {
   "project_info": {
-    "project_number": "878801397561",
-    "project_id": "trustournamentdemo-f69a1",
-    "storage_bucket": "trustournamentdemo-f69a1.appspot.com"
+    "project_number": "132399070328",
+    "firebase_url": "https://tournamentx-b0c78-default-rtdb.firebaseio.com",
+    "project_id": "tournamentx-b0c78",
+    "storage_bucket": "tournamentx-b0c78.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:878801397561:android:e04d9d57d61c9cf8a0aae8",
+        "mobilesdk_app_id": "1:132399070328:android:293e97d2b82b33daa5c18d",
         "android_client_info": {
-          "package_name": "com.trust.tournamentdemo"
+          "package_name": "com.example.testing"
         }
       },
       "oauth_client": [
         {
-          "client_id": "878801397561-ujnkec6jrm55hbafqnfuiob3pkee32dg.apps.googleusercontent.com",
+          "client_id": "132399070328-08ttu3st9lhmqm593pg1oa9qn0uqhi6u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.testing",
+            "certificate_hash": "060a0d2ae50c96b95750cb0055336b2710616366"
+          }
+        },
+        {
+          "client_id": "132399070328-cdutjgej8cfh8oq8p88126d0s05iosqv.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC1EBS-q9PMvuUSVjGkWjo5PrJB_IepxTI"
+          "current_key": "AIzaSyB2vdR4ghyyK50VIp0ORzJbi1BLfofAEhQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "878801397561-ujnkec6jrm55hbafqnfuiob3pkee32dg.apps.googleusercontent.com",
+              "client_id": "132399070328-cdutjgej8cfh8oq8p88126d0s05iosqv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132399070328:android:03235ab666697f32a5c18d",
+        "android_client_info": {
+          "package_name": "com.tournament.tournamentx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "132399070328-d3p7k0cfdvi5ph94tcg4em2u0b8v0k5u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tournament.tournamentx",
+            "certificate_hash": "e5a8e8f50a153ef75f94b4ae9a4bf05a5f0d9c55"
+          }
+        },
+        {
+          "client_id": "132399070328-i47e0vm0epuuhi459fem17ohnqi767n3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.tournament.tournamentx",
+            "certificate_hash": "94819533af44b7904c7f65a70c3ebd32e509e765"
+          }
+        },
+        {
+          "client_id": "132399070328-cdutjgej8cfh8oq8p88126d0s05iosqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2vdR4ghyyK50VIp0ORzJbi1BLfofAEhQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "132399070328-cdutjgej8cfh8oq8p88126d0s05iosqv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132399070328:android:3a74066c6e91181da5c18d",
+        "android_client_info": {
+          "package_name": "com.trust.tournament"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "132399070328-tfjfdmt6i4rep28j2eb2n7a6vv4lcarv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.trust.tournament",
+            "certificate_hash": "94819533af44b7904c7f65a70c3ebd32e509e765"
+          }
+        },
+        {
+          "client_id": "132399070328-cdutjgej8cfh8oq8p88126d0s05iosqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2vdR4ghyyK50VIp0ORzJbi1BLfofAEhQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "132399070328-cdutjgej8cfh8oq8p88126d0s05iosqv.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

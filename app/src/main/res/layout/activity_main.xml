@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/color_grey"
     android:orientation="vertical"
-    tools:context="com.trust.tournamentdemo.activiy.MainActivity">
+    tools:context="com.trust.tournament.activiy.MainActivity">
 
     <LinearLayout
         android:id="@+id/noInternentLayout"
