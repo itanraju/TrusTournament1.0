@@ -15,6 +15,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.Uri;
@@ -45,6 +47,7 @@ import com.google.android.gms.ads.VideoOptions;
 import com.google.android.gms.ads.formats.NativeAdOptions;
 import com.google.android.gms.ads.formats.UnifiedNativeAd;
 import com.google.android.gms.ads.formats.UnifiedNativeAdView;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.play.core.appupdate.AppUpdateInfo;
 import com.google.android.play.core.appupdate.AppUpdateManager;
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory;
@@ -52,6 +55,8 @@ import com.google.android.play.core.install.model.AppUpdateType;
 import com.google.android.play.core.install.model.UpdateAvailability;
 import com.google.android.play.core.tasks.Task;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.trust.tournament.R;
 import com.trust.tournament.Utils.ViewDialog;
 import com.trust.tournament.adapter.TournamentAdapter;
@@ -78,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static ArrayList<TournamentsModel> tournamentDataArrayList = new ArrayList<>();
     private DatabaseReference databaseReference;
+    private FirebaseRemoteConfig firebaseRemoteConfig;
     private RecyclerView recyclerView;
     private LinearLayout noInternentLayout;
     public static String androidId;
@@ -109,15 +115,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onRestart() {
+        recreate();
+        super.onRestart();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         callInupdate();
+        fetchVersion();
         sp = getSharedPreferences("click", Activity.MODE_PRIVATE);
         editor2 = sp.edit();
         click = sp.getInt("click", 0);
         ePreferences = EPreferences.getInstance((Context) this);
-        FirebaseMessaging.getInstance().subscribeToTopic("notification");
+        FirebaseMessaging.getInstance().subscribeToTopic("trustournament1.0");
         android_id = Settings.Secure.getString(MainActivity.this.getContentResolver(), Settings.Secure.ANDROID_ID);
         Intent intentBackgroundService = new Intent(this, FirebasePushNotificationClass.class);
         startService(intentBackgroundService);
@@ -637,6 +650,41 @@ public class MainActivity extends AppCompatActivity {
             } // This is your code
         };
         mainHandler.post(myRunnable);
+    }
+
+    private int getCurrentVersionCode()
+    {
+        PackageInfo packageInfo=null;
+        try {
+            packageInfo=getPackageManager().getPackageInfo(getPackageName(),0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return packageInfo.versionCode;
+    }
+
+    private void fetchVersion() {
+        int currentVersionCode=getCurrentVersionCode();
+        Log.e("TAG","App version : "+String.valueOf(currentVersionCode));
+        firebaseRemoteConfig=FirebaseRemoteConfig.getInstance();
+        FirebaseRemoteConfigSettings configSettings=new FirebaseRemoteConfigSettings.Builder()
+                .setMinimumFetchIntervalInSeconds(5)
+                .build();
+        firebaseRemoteConfig.setConfigSettingsAsync(configSettings);
+        firebaseRemoteConfig.fetchAndActivate().addOnCompleteListener(new OnCompleteListener<Boolean>() {
+            @Override
+            public void onComplete(@NonNull com.google.android.gms.tasks.Task<Boolean> task) {
+                if(task.isSuccessful()){
+                    final String newVersion=firebaseRemoteConfig.getString("new_version_code");
+                    Log.e("TAG","New version : "+String.valueOf(newVersion));
+                    if(Integer.parseInt(newVersion)>getCurrentVersionCode())
+                    {
+                        ViewDialog viewDialog=new ViewDialog();
+                        viewDialog.showDialogForUpdate(MainActivity.this);
+                    }
+                }
+            }
+        });
     }
 
     private void callInupdate() {
