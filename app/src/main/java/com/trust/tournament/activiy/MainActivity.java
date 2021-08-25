@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         editor2 = sp.edit();
         click = sp.getInt("click", 0);
         ePreferences = EPreferences.getInstance((Context) this);
-        FirebaseMessaging.getInstance().subscribeToTopic("trustournament1.0");
+        FirebaseMessaging.getInstance().subscribeToTopic("tt1.0");
         android_id = Settings.Secure.getString(MainActivity.this.getContentResolver(), Settings.Secure.ANDROID_ID);
         Intent intentBackgroundService = new Intent(this, FirebasePushNotificationClass.class);
         startService(intentBackgroundService);
@@ -595,7 +595,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAdFailedToLoad(int i) {
                 super.onAdFailedToLoad(i);
-
             }
         });
     }

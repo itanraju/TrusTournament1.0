@@ -284,7 +284,7 @@ public class RegistrationOtpActivity extends AppCompatActivity {
 
     public RewardedAd createAndLoadRewardedAd() {
         RewardedAd rewardedAd = new RewardedAd(this,
-                "ca-app-pub-3940256099942544/");
+                "ca-app-pub-7806194939573064/8732304205");
         RewardedAdLoadCallback adLoadCallback = new RewardedAdLoadCallback() {
             @Override
             public void onRewardedAdLoaded() {
@@ -308,7 +308,7 @@ public class RegistrationOtpActivity extends AppCompatActivity {
 
     private void rewardsAds() {
         rewardedAd = new RewardedAd(this,
-                "ca-app-pub-3940256099942544/");
+                "ca-app-pub-7806194939573064/8732304205");
         RewardedAdLoadCallback adLoadCallback = new RewardedAdLoadCallback() {
             @Override
             public void onRewardedAdLoaded() {
@@ -443,10 +443,11 @@ public class RegistrationOtpActivity extends AppCompatActivity {
                     }
                 }, 2000);
             } else {
-                super.onBackPressed();
                 finish();
+                super.onBackPressed();
             }
         } else {
+            finish();
             super.onBackPressed();
         }
     }
